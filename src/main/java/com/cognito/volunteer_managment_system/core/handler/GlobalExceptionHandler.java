@@ -1,23 +1,20 @@
 package com.cognito.volunteer_managment_system.core.handler;
 
+import org.springframework.security.authentication.LockedException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.cognito.volunteer_managment_system.core.exception.ActivationCodeException;
-import com.cognito.volunteer_managment_system.core.security.entity.ActivationCode;
 import jakarta.mail.MessagingException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.LockedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static com.cognito.volunteer_managment_system.core.handler.BusinessErrorCode.*;
 import static org.springframework.http.HttpStatus.*;
-
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
