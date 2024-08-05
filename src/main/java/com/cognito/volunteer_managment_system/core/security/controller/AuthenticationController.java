@@ -1,5 +1,6 @@
 package com.cognito.volunteer_managment_system.core.security.controller;
 
+import com.cognito.volunteer_managment_system.core.security.controller.validation.ValidPassword;
 import com.cognito.volunteer_managment_system.core.security.dto.AuthenticationRequest;
 import com.cognito.volunteer_managment_system.core.security.dto.AuthenticationResponse;
 import com.cognito.volunteer_managment_system.core.security.dto.RegistrationRequest;
@@ -26,7 +27,7 @@ public class AuthenticationController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<?> register(
-            @Valid @RequestBody RegistrationRequest request
+            @Valid @RequestBody @ValidPassword RegistrationRequest request
     ) throws MessagingException {
         authenticationService.register(request);
         return ResponseEntity.accepted().build();
@@ -34,7 +35,7 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @Valid @RequestBody AuthenticationRequest request
+            @Valid @RequestBody @ValidPassword AuthenticationRequest request
     ) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
