@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  postgrees:
+    container_name: postgres-sql-vms
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      PG_DATA: /var/lib/postgresql/data
+      POSTGRES_DB: vms
+    volumes:
+      - postfres:/data/postgres
+    ports:
+      - 5432:5432
+    networks:
+      - spring-demo
+    restart: unless-stopped
+
+  mail-dev:
+    container_name: mail-dev-vms
+    image: maildev/maildev
+    ports:
+      - 1080:1080
+      - 1025:1025
+
+networks:
+  spring-demo:
+    driver: bridge
+
+volumes:
+  postgres:
+    driver: local
+
