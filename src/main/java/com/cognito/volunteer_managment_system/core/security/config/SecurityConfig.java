@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req->
                         req.requestMatchers(permitSwagger).permitAll()
                                 .requestMatchers("/leader/**").hasRole(Role.LEADER.name())
+                                .requestMatchers("/organizer/**").hasRole(Role.ORGANIZER.name())
                 )
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)

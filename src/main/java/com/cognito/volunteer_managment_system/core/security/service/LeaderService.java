@@ -4,9 +4,8 @@ import com.cognito.volunteer_managment_system.core.exception.OperationNotPermitt
 import com.cognito.volunteer_managment_system.core.security.dataAccess.UserRepository;
 import com.cognito.volunteer_managment_system.core.security.entity.user.User;
 import com.cognito.volunteer_managment_system.dataAccess.TeamRepository;
-import com.cognito.volunteer_managment_system.dto.TeamRequest;
-import com.cognito.volunteer_managment_system.dto.TeamResponse;
-import com.cognito.volunteer_managment_system.entity.Team;
+import com.cognito.volunteer_managment_system.dto.team.TeamRequest;
+import com.cognito.volunteer_managment_system.dto.team.TeamResponse;
 import com.cognito.volunteer_managment_system.mapper.TeamMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -38,6 +37,8 @@ public class LeaderService {
         }
         var team = teamMapper.toTeam(user,request);
         teamRepository.save(team);
+        user.setTeam(team);
+        userRepository.save(user);
         return teamMapper.toTeamResponse(team);
     }
 
