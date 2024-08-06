@@ -1,4 +1,4 @@
-package com.cognito.volunteer_managment_system.dto;
+package com.cognito.volunteer_managment_system.dto.team;
 
 import com.cognito.volunteer_managment_system.core.security.entity.user.User;
 import lombok.Builder;
