@@ -1,4 +1,4 @@
-package com.cognito.volunteer_managment_system.core.security.dto;
+package com.cognito.volunteer_managment_system.core.security.dto.auth;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

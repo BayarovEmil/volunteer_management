@@ -1,5 +1,6 @@
 package com.cognito.volunteer_managment_system.core.handler;
 
+import com.cognito.volunteer_managment_system.core.exception.OperationNotPermittedException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -61,6 +62,18 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ActivationCodeException.class)
     public ResponseEntity<ExceptionResponse> handler(ActivationCodeException exp) {
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(
+                        ExceptionResponse.builder()
+                                .error(exp.getMessage())
+                                .build()
+                );
+
+    }
+
+    @ExceptionHandler(OperationNotPermittedException.class)
+    public ResponseEntity<ExceptionResponse> handler(OperationNotPermittedException exp) {
         return ResponseEntity
                 .status(BAD_REQUEST)
                 .body(

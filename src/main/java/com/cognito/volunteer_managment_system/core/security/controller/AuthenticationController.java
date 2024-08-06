@@ -1,9 +1,9 @@
 package com.cognito.volunteer_managment_system.core.security.controller;
 
 import com.cognito.volunteer_managment_system.core.security.controller.validation.ValidPassword;
-import com.cognito.volunteer_managment_system.core.security.dto.AuthenticationRequest;
-import com.cognito.volunteer_managment_system.core.security.dto.AuthenticationResponse;
-import com.cognito.volunteer_managment_system.core.security.dto.RegistrationRequest;
+import com.cognito.volunteer_managment_system.core.security.dto.auth.AuthenticationRequest;
+import com.cognito.volunteer_managment_system.core.security.dto.auth.AuthenticationResponse;
+import com.cognito.volunteer_managment_system.core.security.dto.auth.RegistrationRequest;
 import com.cognito.volunteer_managment_system.core.security.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
@@ -27,7 +27,7 @@ public class AuthenticationController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<?> register(
-            @Valid @RequestBody @ValidPassword RegistrationRequest request
+            @Valid @RequestBody RegistrationRequest request
     ) throws MessagingException {
         authenticationService.register(request);
         return ResponseEntity.accepted().build();
@@ -35,7 +35,7 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @Valid @RequestBody @ValidPassword AuthenticationRequest request
+            @Valid @RequestBody AuthenticationRequest request
     ) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }

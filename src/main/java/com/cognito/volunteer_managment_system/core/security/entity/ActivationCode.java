@@ -1,8 +1,8 @@
 package com.cognito.volunteer_managment_system.core.security.entity;
 
+import com.cognito.volunteer_managment_system.core.security.entity.user.User;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 

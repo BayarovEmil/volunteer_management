@@ -4,7 +4,7 @@ import com.cognito.volunteer_managment_system.core.email.EmailService;
 import com.cognito.volunteer_managment_system.core.email.EmailTemplate;
 import com.cognito.volunteer_managment_system.core.security.dataAccess.ActivationCodeRepository;
 import com.cognito.volunteer_managment_system.core.security.entity.ActivationCode;
-import com.cognito.volunteer_managment_system.core.security.entity.User;
+import com.cognito.volunteer_managment_system.core.security.entity.user.User;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

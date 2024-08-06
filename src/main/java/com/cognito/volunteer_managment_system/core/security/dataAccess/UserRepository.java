@@ -1,6 +1,6 @@
 package com.cognito.volunteer_managment_system.core.security.dataAccess;
 
-import com.cognito.volunteer_managment_system.core.security.entity.User;
+import com.cognito.volunteer_managment_system.core.security.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

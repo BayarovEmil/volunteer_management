@@ -3,11 +3,11 @@ package com.cognito.volunteer_managment_system.core.security.service;
 import com.cognito.volunteer_managment_system.core.security.config.JwtService;
 import com.cognito.volunteer_managment_system.core.security.dataAccess.ActivationCodeRepository;
 import com.cognito.volunteer_managment_system.core.security.dataAccess.UserRepository;
-import com.cognito.volunteer_managment_system.core.security.dto.AuthenticationRequest;
-import com.cognito.volunteer_managment_system.core.security.dto.AuthenticationResponse;
-import com.cognito.volunteer_managment_system.core.security.dto.RegistrationRequest;
+import com.cognito.volunteer_managment_system.core.security.dto.auth.AuthenticationRequest;
+import com.cognito.volunteer_managment_system.core.security.dto.auth.AuthenticationResponse;
+import com.cognito.volunteer_managment_system.core.security.dto.auth.RegistrationRequest;
 import com.cognito.volunteer_managment_system.core.security.entity.Role;
-import com.cognito.volunteer_managment_system.core.security.entity.User;
+import com.cognito.volunteer_managment_system.core.security.entity.user.User;
 import com.cognito.volunteer_managment_system.core.util.EmailUtil;
 import com.cognito.volunteer_managment_system.core.util.TokenUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,11 +23,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.net.http.HttpHeaders;
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

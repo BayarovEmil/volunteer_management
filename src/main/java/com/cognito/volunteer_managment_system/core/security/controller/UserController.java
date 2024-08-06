@@ -1,7 +1,8 @@
 package com.cognito.volunteer_managment_system.core.security.controller;
 
 import com.cognito.volunteer_managment_system.core.security.controller.validation.ValidPassword;
-import com.cognito.volunteer_managment_system.core.security.dto.ChangePassword;
+import com.cognito.volunteer_managment_system.core.security.dto.password.ChangePassword;
+import com.cognito.volunteer_managment_system.core.security.dto.user.UserResponse;
 import com.cognito.volunteer_managment_system.core.security.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
@@ -52,5 +53,12 @@ public class UserController {
     ) {
         userService.deactivateAccount(connectedUser);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/showUserInformation")
+    public ResponseEntity<UserResponse> showUserInformation(
+            Authentication connectedUser
+    ) {
+        return ResponseEntity.ok(userService.showUserInformation(connectedUser));
     }
 }

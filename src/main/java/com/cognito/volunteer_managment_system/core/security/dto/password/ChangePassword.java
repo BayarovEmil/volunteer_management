@@ -1,4 +1,4 @@
-package com.cognito.volunteer_managment_system.core.security.dto;
+package com.cognito.volunteer_managment_system.core.security.dto.password;
 
 public record ChangePassword(
         String currentPassword,

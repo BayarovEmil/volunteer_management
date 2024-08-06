@@ -1,5 +1,6 @@
 package com.cognito.volunteer_managment_system.core.security.config;
 
+import com.cognito.volunteer_managment_system.core.security.entity.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(req->
                         req.requestMatchers(permitSwagger).permitAll()
+                                .requestMatchers("/leader/**").hasRole(Role.LEADER.name())
                 )
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
@@ -56,4 +58,5 @@ public class SecurityConfig {
             "/webjars/**",
             "/swagger-ui.html"
     };
+
 }

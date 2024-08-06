@@ -1,5 +1,6 @@
-package com.cognito.volunteer_managment_system.core.security.dto;
+package com.cognito.volunteer_managment_system.core.security.dto.auth;
 
+import com.cognito.volunteer_managment_system.core.security.controller.validation.ValidPassword;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ public record RegistrationRequest(
         @NotNull(message = "Password is mandatory")
         @NotEmpty(message = "Password is mandatory")
         @Size(message = "Password length must be longer than 4 elements")
+        @ValidPassword
         String password
 ) {
 }

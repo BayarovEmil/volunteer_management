@@ -3,7 +3,7 @@ package com.cognito.volunteer_managment_system.core.util;
 import com.cognito.volunteer_managment_system.core.security.dataAccess.TokenRepository;
 import com.cognito.volunteer_managment_system.core.security.entity.Token;
 import com.cognito.volunteer_managment_system.core.security.entity.TokenType;
-import com.cognito.volunteer_managment_system.core.security.entity.User;
+import com.cognito.volunteer_managment_system.core.security.entity.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

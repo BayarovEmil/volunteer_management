@@ -1,5 +1,8 @@
-package com.cognito.volunteer_managment_system.core.security.entity;
+package com.cognito.volunteer_managment_system.core.security.entity.user;
 
+import com.cognito.volunteer_managment_system.core.security.entity.ActivationCode;
+import com.cognito.volunteer_managment_system.core.security.entity.Role;
+import com.cognito.volunteer_managment_system.entity.Team;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -35,17 +38,14 @@ public class User implements UserDetails, Principal {
     private boolean accountLocked;
     private boolean enabled;
 
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
+
     @OneToMany(mappedBy = "user")
     private List<ActivationCode> activationCodes;
     @Enumerated(EnumType.STRING)
     private Role role;
-
-//    @CreatedDate
-//    @Column(insertable = false)
-//    private LocalDateTime createdDate;
-//    @LastModifiedDate
-//    @Column(updatable = false)
-//    private LocalDateTime lastModifiedDate;
 
     @CreatedDate
     @Column(nullable = false,updatable = false)

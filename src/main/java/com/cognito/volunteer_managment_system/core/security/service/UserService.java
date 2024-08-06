@@ -1,9 +1,12 @@
 package com.cognito.volunteer_managment_system.core.security.service;
 
+import com.cognito.volunteer_managment_system.core.exception.OperationNotPermittedException;
 import com.cognito.volunteer_managment_system.core.security.dataAccess.ActivationCodeRepository;
 import com.cognito.volunteer_managment_system.core.security.dataAccess.UserRepository;
-import com.cognito.volunteer_managment_system.core.security.dto.ChangePassword;
-import com.cognito.volunteer_managment_system.core.security.entity.User;
+import com.cognito.volunteer_managment_system.core.security.dto.password.ChangePassword;
+import com.cognito.volunteer_managment_system.core.security.dto.user.UserResponse;
+import com.cognito.volunteer_managment_system.core.security.entity.user.User;
+import com.cognito.volunteer_managment_system.core.security.mapper.UserMapper;
 import com.cognito.volunteer_managment_system.core.util.EmailUtil;
 import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
@@ -22,6 +25,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final ActivationCodeRepository activationCodeRepository;
     private final EmailUtil emailSenderUtil;
+    private final UserMapper userMapper;
     public void changePassword(ChangePassword changePassword, Authentication connectedUser) {
         User user = (User) connectedUser.getPrincipal();
 
@@ -67,5 +71,13 @@ public class UserService {
         user.setEnabled(false);
         user.setAccountLocked(true);
         userRepository.save(user);
+    }
+
+    public UserResponse showUserInformation(Authentication connectedUser) {
+        User user = (User) connectedUser.getPrincipal();
+        if (user == null || user.isAccountLocked() || !user.isEnabled()) {
+            throw new OperationNotPermittedException("User is not logged in our system");
+        }
+        return userMapper.toUserResponse(user);
     }
 }
