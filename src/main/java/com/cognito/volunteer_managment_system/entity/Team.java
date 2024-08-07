@@ -30,9 +30,24 @@ public class Team extends BaseEntity {
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<User> users;
 
-//    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Task> tasks;
+    @OneToMany(mappedBy = "team")
+    private List<Feedback> feedbacks;
 
     @OneToMany(mappedBy = "assignedTeam")
     private List<Task> tasks;
+
+    @Transient
+    public double getRate() {
+        if (feedbacks == null || feedbacks.isEmpty()) {
+            return 0.0;
+        }
+        var rate = this.feedbacks.stream()
+                .mapToDouble(Feedback::getNote)
+                .average()
+                .orElse(0.0);
+        double roundedRate = Math.round(rate * 10.0) / 10.0;
+
+        // Return 4.0 if roundedRate is less than 4.5, otherwise return 4.5
+        return roundedRate;
+    }
 }

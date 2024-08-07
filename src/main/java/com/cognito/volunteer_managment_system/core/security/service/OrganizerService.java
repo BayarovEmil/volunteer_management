@@ -108,9 +108,9 @@ public class OrganizerService {
             TaskRequest request
     ) {
         User user = (User) connectedUser.getPrincipal();
-        var team = teamRepository.findById(request.assignedTeam())
-                .orElseThrow(()->new IllegalStateException("Team not found by id"));
-        var task = taskMapper.toTask(user,request);
+//        var team = teamRepository.findById(request.assignedTeam())
+//                .orElseThrow(()->new IllegalStateException("Team not found by id"));
+        Task task = taskMapper.toTask(user,request);
         taskRepository.save(task);
         return taskMapper.toTaskResponse(task);
     }

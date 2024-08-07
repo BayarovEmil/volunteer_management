@@ -33,6 +33,7 @@ public class SecurityConfig {
                         req.requestMatchers(permitSwagger).permitAll()
                                 .requestMatchers("/leader/**").hasRole(Role.LEADER.name())
                                 .requestMatchers("/organizer/**").hasRole(Role.ORGANIZER.name())
+                                .requestMatchers("/feedback/**").hasRole(Role.ORGANIZER.name())
                 )
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
@@ -47,6 +48,7 @@ public class SecurityConfig {
 
     public static String[] permitSwagger = {
             "/auth/**",
+            "/feedback/feedback/**",
             "/user/**",
             "/v2/api-docs",
             "/v3/api-docs",

@@ -1,5 +1,6 @@
 package com.cognito.volunteer_managment_system.mapper;
 
+import com.cognito.volunteer_managment_system.core.security.dataAccess.UserRepository;
 import com.cognito.volunteer_managment_system.core.security.entity.user.User;
 import com.cognito.volunteer_managment_system.dataAccess.TeamRepository;
 import com.cognito.volunteer_managment_system.dto.task.TaskRequest;
@@ -13,20 +14,21 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TaskMapper {
     private final TeamRepository teamRepository;
+    private final UserRepository userRepository;
     public Task toTask(User user, TaskRequest request) {
         var team = Team.builder()
                 .id(request.assignedTeam())
                 .build();
-         return Task.builder()
+//        var leader = userRepository.findByTeamId(team.getId())
+//                .orElseThrow(()->new IllegalStateException("User not found by team id"));
+        return Task.builder()
                 .title(request.title())
                 .description(request.description())
                 .isDone(false)
                  .isActive(true)
                 .organizer(user)
-//                 .assignedLeader(User.builder().firstname(team.getTeamLeader()).build())
-                .assignedTeam(
-                        team
-                )
+//                 .assignedLeader(leader)
+                .assignedTeam(team)
                 .build();
     }
 
