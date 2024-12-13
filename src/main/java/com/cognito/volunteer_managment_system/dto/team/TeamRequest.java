@@ -1,4 +1,4 @@
-package com.cognito.volunteer_managment_system.dto;
+package com.cognito.volunteer_managment_system.dto.team;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

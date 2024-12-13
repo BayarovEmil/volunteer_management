@@ -1,8 +1,8 @@
 package com.cognito.volunteer_managment_system.mapper;
 
 import com.cognito.volunteer_managment_system.core.security.entity.user.User;
-import com.cognito.volunteer_managment_system.dto.TeamRequest;
-import com.cognito.volunteer_managment_system.dto.TeamResponse;
+import com.cognito.volunteer_managment_system.dto.team.TeamRequest;
+import com.cognito.volunteer_managment_system.dto.team.TeamResponse;
 import com.cognito.volunteer_managment_system.entity.Team;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

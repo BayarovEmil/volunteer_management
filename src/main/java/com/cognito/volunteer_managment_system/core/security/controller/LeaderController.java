@@ -1,10 +1,9 @@
 package com.cognito.volunteer_managment_system.core.security.controller;
 
 import com.cognito.volunteer_managment_system.core.security.service.LeaderService;
-import com.cognito.volunteer_managment_system.dto.TeamRequest;
-import com.cognito.volunteer_managment_system.dto.TeamResponse;
+import com.cognito.volunteer_managment_system.dto.team.TeamRequest;
+import com.cognito.volunteer_managment_system.dto.team.TeamResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
